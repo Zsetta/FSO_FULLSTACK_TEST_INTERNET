@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'http://localhost:3001/api/persons';
+const baseURL = 'https://fso-fullstack-test-internet.onrender.com/api/persons';
 
 const getAll = () => {
 	console.log("getAll");
