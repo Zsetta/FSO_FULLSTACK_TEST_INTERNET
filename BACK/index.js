@@ -100,6 +100,34 @@ app.post('/api/persons',(req,res)=>{
 	console.log(persons)
 	res.json(person)
 })
+
+app.put('/api/persons/:id', (req, res) => {
+    const id = Number(req.params.id);
+    const body = req.body;
+
+    if (!body.name || !body.number) {
+        return res.status(400).json({ error: 'content-missing' });
+    }
+
+    const person = persons.find(p => Number(p.id) === id);
+
+    if (!person) {
+        return res.status(404).json({ error: 'person not found' });
+    }
+
+    const updatedPerson = {
+        ...person,
+        name: body.name,
+        number: body.number
+    };
+
+    persons = persons.map(p =>
+        Number(p.id) === id ? updatedPerson : p
+    );
+
+    res.json(updatedPerson);
+});
+
 //se ejecuta si el resto (anteriores) no se ejecuta
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' })

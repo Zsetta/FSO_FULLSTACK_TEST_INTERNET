@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'https://fso-fullstack-test-internet.onrender.com/api/persons';
+const baseURL = import.meta.env.VITE_API_URL
 
 const getAll = () => {
 	console.log("getAll");
